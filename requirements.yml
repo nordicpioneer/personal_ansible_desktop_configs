@@ -1,0 +1,9 @@
+collections:
+roles:
+  - name: geerlingguy.docker
+  - name: ggerlingguy.pip
+#  - name: avanov.pyenv
+#  - name: bartdorlandt.poetry
+  - name: oefenweb.latest_r
+  - name: oefenweb.rstudio
+  - name: viasite-ansible.zsh

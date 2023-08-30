@@ -1,0 +1,55 @@
+# tasks to complete before running roles
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: system setup | utility packages | install packages
+    package:
+      name:
+        - htop
+        - btop
+        - tmux
+        - vim-nox
+        - speedtest-cli
+        - git
+        - wget
+        - rsync
+        - net-tools
+        - smartmontools
+
+  - name: system setup | development packages | install packages
+     tags: dev,development,packages,python,docker
+     package:
+       name:
+        - fabric
+        - git
+        - perl
+        - tig
+        - vscodium
+       state: latest
+
+#  - name: system setup | flatpaks | install packages
+
+# roles 
+   roles:
+     - role: geerlingguy.pip
+
+     - role: geerlingguy.docker
+
+#     - role: avanov.pyenv
+
+#     - role: bartdorlandt.poetry
+
+     - role: oefenweb.latest_r
+
+     - role: oefenweb.rstudio
+
+     - role: viasite-ansible.zsh
+
+# variables
+   vars:
+     r_version: 40
+     r_packages:
+       - name: renv
+     rstudio_version: 2023.06.2
