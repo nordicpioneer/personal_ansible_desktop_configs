@@ -1,9 +1,7 @@
-collections:
+---
 roles:
   - name: geerlingguy.docker
-  - name: ggerlingguy.pip
-#  - name: avanov.pyenv
-#  - name: bartdorlandt.poetry
-  - name: oefenweb.latest_r
-  - name: oefenweb.rstudio
+  - name: geerlingguy.pip
+  - name: uelei.python_setup_pyenv_pipx_poetry
   - name: viasite-ansible.zsh
+

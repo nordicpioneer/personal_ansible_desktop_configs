@@ -1,55 +1,205 @@
+---
 # tasks to complete before running roles
 - hosts: localhost
-  connection: local
   become: true
-
   tasks:
-  - name: system setup | utility packages | install packages
-    package:
-      name:
-        - htop
-        - btop
-        - tmux
-        - vim-nox
-        - speedtest-cli
-        - git
-        - wget
-        - rsync
-        - net-tools
-        - smartmontools
+    - name: system setup | utility packages | install packages
+      apt:
+        update_cache: yes
+        name:
+          - htop
+          - btop
+          - tmux
+          - vim-nox
+          - speedtest-cli
+          - wget
+          - rsync
+          - net-tools
+          - smartmontools
+          - timeshift
+          - flameshot
+          - evolution
+          - evolution-ews # Evolution mail client plugin for ms-exchange mail protocol https://www.uio.no/tjenester/it/e-post-kalender/evolution/hjelp/oppsett/sette-opp-evolution-med-ews.html
+          - pandoc
+        state: latest
 
-  - name: system setup | development packages | install packages
-     tags: dev,development,packages,python,docker
-     package:
-       name:
-        - fabric
-        - git
-        - perl
-        - tig
-        - vscodium
-       state: latest
+    - name: Install Jottacloud CLI | 1) Obtain repository key
+      ansible.builtin.get_url:
+        url: https://repo.jotta.us/public.asc
+        dest: /usr/share/keyrings/jotta.gpg
 
-#  - name: system setup | flatpaks | install packages
+    - name: Install Jottacloud CLI | 2) Save repo information to apt sources
+      ansible.builtin.apt_repository:
+        repo: 'deb [signed-by=/usr/share/keyrings/jotta.gpg] https://repo.jotta.us/debian debian main'
+        state: present
+        update_cache: true
 
-# roles 
-   roles:
-     - role: geerlingguy.pip
+    - name: Install Jottacloud CLI | 3) Update cache and install from repo
+      apt:
+        update_cache: yes
+        name: jotta-cli
 
-     - role: geerlingguy.docker
+    - name: 1password deb package install | utility packages
+      apt:
+        deb: https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb
+        state: present
 
-#     - role: avanov.pyenv
+    - name: software tools | utility packages
+      apt:
+        update_cache: yes
+        name:
+          - vlc
+          - gnucash
+          - anki
+        state: latest
 
-#     - role: bartdorlandt.poetry
+    - name: system setup | development packages | install packages
+      apt:
+        update_cache: yes
+        name:
+          - fabric
+          - perl
+          - git
+          - tig
+          - blender
+          - python3.10
+          - python3.10-dev
+          - python3.10-venv
+          - python3.10-virtualenv #requirement for ansible.builtin.pip
+          - libcurl4-openssl-dev  #requirement for RCurl package
+          - libgsl-dev # GNU scientific library binary 
+        state: latest
 
-     - role: oefenweb.latest_r
+    - name: system setup | neuroimaging packages | install apt packages
+      apt:
+        update_cache: yes
+        name:
+          - connectome-workbench
+        state: present
 
-     - role: oefenweb.rstudio
+    - name: Add repo for TLP ubuntu
+      ansible.builtin.apt_repository:
+        repo: 'ppa:linrunner/tlp'
+        state: present
+        update_cache: true
 
-     - role: viasite-ansible.zsh
+    - name: Install TLP power/battery manager and radio device manager
+      apt:
+        name:
+          - tlp
+          - tlp-rdw
+        state: present
+        update_cache: true
 
-# variables
-   vars:
-     r_version: 40
-     r_packages:
-       - name: renv
-     rstudio_version: 2023.06.2
+    - name: Install R | Set host facts for R
+      ansible.builtin.set_fact:
+        R_VERSION: '4.2.2'
+        CPU_TYPE: 'amd64'
+        UBUNTU_VERSION_NAME: 'jammy'
+        UBUNTU_VERSION_NUMBER: '2204'
+
+    - name: Install R | Install deb package for ubuntu 2204 amd64
+      apt:
+        deb: 'https://cdn.rstudio.com/r/ubuntu-{{ UBUNTU_VERSION_NUMBER  }}/pkgs/r-{{ R_VERSION }}_1_{{ CPU_TYPE }}.deb'
+        state: present
+
+    - name: Install R | Create symlink for R
+      command: 'ln -s /opt/R/{{ R_VERSION }}/bin/R /usr/local/bin/R'
+      args:
+        creates: '/usr/local/bin/R'
+
+    - name: Install R | Create symlink for Rscript
+      command: 'ln -s /opt/R/{{ R_VERSION }}/bin/Rscript /usr/local/bin/Rscript'
+      args:
+        creates: '/usr/local/bin/Rscript'
+
+    - name: Install Rstudio | Set host facts for Rstudio
+      ansible.builtin.set_fact:
+        RSTUDIO_VERSION: '2023.06.2-561'
+        #RSTUDIO_DOWNLOAD_URL: ''
+
+    - name: Install RStudio | Install deb package
+      apt:
+        deb: 'https://download1.rstudio.org/electron/{{ UBUNTU_VERSION_NAME }}/{{ CPU_TYPE }}/rstudio-{{ RSTUDIO_VERSION }}-{{ CPU_TYPE }}.deb'
+        state: present
+
+    - name: Install collection community.general
+      community.general.ansible_galaxy_install:
+        type: collection
+        name: community.general
+
+    - name: Add flathub repo
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: 'https://dl.flathub.org/repo/flathub.flatpakrepo'
+        method: system
+        enabled: true
+
+    - name: Install flatpaks
+      community.general.flatpak:
+        method: system
+        name:
+          - com.github.tchx84.Flatseal
+          - md.obsidian.Obsidian
+          - org.zotero.Zotero
+          - com.github.ahrm.sioyek
+          - com.calibre_ebook.calibre
+          - org.signal.Signal
+          - network.loki.Session
+          - com.slack.Slack
+          - com.discordapp.Discord
+          - com.github.dynobo.normcap
+          - com.vscodium.codium
+          - com.anydesk.Anydesk
+          - com.github.IsmaelMartinez.teams_for_linux
+          - org.gnome.Extensions
+          - com.mattjakeman.ExtensionManager
+          - app.drey.Dialect # translation app for GNOME
+          - com.belmoussaoui.Decoder # qr-code scanner and generation
+          - com.mastermindzh.tidal-hifi
+        state: present
+
+    - name: Uninstall flatpaks
+      community.general.flatpak:
+        method: system
+        name:
+          - org.mozilla.Thunderbird
+          - com.sindresorhus.Caprine
+
+#  roles:
+#     - { role: uelei.python-setup-pyenv-pipx-poetry }
+#     - { role: viasite-ansible.zsh }
+#     - { role: geerlingguy.docker }
+#
+#  tasks:
+#     - name: pipx install cookiecutter | Data science project templates
+#       apt.community.general.pipx:
+#         name: cookiecutter
+
+# gnome-extensions
+  # pomodoro/cronomix
+  # User themes custom gnome themes and accent colors and color themes
+  # vitals -> system resource monitor, customizabel info in menu bar
+  # gsconnect -> connect to smartphone
+  # openweather
+  # unblank -> in locked screen mode sometimes you have to enter password blindly
+  # fly-pie -> custom bubble wheel menu for commands apps and folder navigation
+  # forge -> window tiling system, with support for small floating windows.
+  # gradience (standalone app via flathub) -> apply color palettes to windows and buttons
+  # just-perfection -> customize panels, buttons, icons, items in clock menu.
+         # and change behavior, animations
+  # advanced-alt-tab-switcher -> customize switching menu between windows, with own
+         # keyboard hotkeys
+  # chce -> custom corner actions, with enourmes alternatives in the extensions settings
+  # login-manager-settings -> customize login window
+  # pano -> visual clipboard manager. visual customization for 
+         # varying content in clipboard. require some libraries.
+  # webfeed -> rss into menubar
+  # circular widgets
+  # sound input & output device chooser
+
+# tools for gnome desktop configuration
+   # gnome community.general.dconf module for ansible is usefull for setting up
+      # gnome desktop environment with ansible
+   # gnome-extensions-cli -> a pipx python cli-tool to manage gnome shell extensions
