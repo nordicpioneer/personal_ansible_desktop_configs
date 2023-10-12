@@ -16,11 +16,14 @@
           - rsync
           - net-tools
           - smartmontools
-          - timeshift
-          - flameshot
-          - evolution
-          - evolution-ews # Evolution mail client plugin for ms-exchange mail protocol https://www.uio.no/tjenester/it/e-post-kalender/evolution/hjelp/oppsett/sette-opp-evolution-med-ews.html
-          - pandoc
+          - timeshift              # Backup tool
+          - flameshot              # Screenshot tool
+          - evolution              # Evolution mail client
+          - evolution-ews          # Evolution mail client plugin for ms-exchange mail protocol https://www.uio.no/tjenester/it/e-post-kalender/evolution/hjelp/oppsett/sette-opp-evolution-med-ews.html
+          - pandoc                 # Tool for conversion between manuscript-document formats
+          - usbmuxd                # libimobiledevice6 ubuntu install
+          - libimobiledevice6      # libimobiledevice6 ubuntu install
+          - libimobiledevice-utils # libimobiledevice6 ubuntu install
         state: latest
 
     - name: Install Jottacloud CLI | 1) Obtain repository key
