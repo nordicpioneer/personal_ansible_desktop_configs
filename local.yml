@@ -21,6 +21,7 @@
           - evolution              # Evolution mail client
           - evolution-ews          # Evolution mail client plugin for ms-exchange mail protocol https://www.uio.no/tjenester/it/e-post-kalender/evolution/hjelp/oppsett/sette-opp-evolution-med-ews.html
           - pandoc                 # Tool for conversion between manuscript-document formats
+          - xclip                  # CLI-tool for clipboard reading and writing
           - usbmuxd                # libimobiledevice6 ubuntu install
           - libimobiledevice6      # libimobiledevice6 ubuntu install
           - libimobiledevice-utils # libimobiledevice6 ubuntu install
