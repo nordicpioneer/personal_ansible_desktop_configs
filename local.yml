@@ -72,6 +72,9 @@
           - python3.10-virtualenv #requirement for ansible.builtin.pip
           - libcurl4-openssl-dev  #requirement for RCurl package
           - libgsl-dev # GNU scientific library binary 
+          - default-jre # Java - Ubuntu build of current OpenJDK JRE in Long Term Support (LTS). Remember to add JAVA_HOME env variable.  
+          - openjdk-19-jdk, openjdk-19-jre # May be relevant to update version later in this playbook.
+          - podman # container engine
         state: latest
 
     - name: system setup | neuroimaging packages | install apt packages
