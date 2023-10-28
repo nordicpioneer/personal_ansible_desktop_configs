@@ -28,13 +28,31 @@
           - libimobiledevice-utils # libimobiledevice6 ubuntu install
         state: latest
 
-    - name: Install corectrl | 1) Add Mesarc PPA repository
+    - name: Install corectrl | 1) Create the /etc/apt/preferences.d/corectrl file
+      become: yes
+      copy:
+        content: |
+          # Never prefer packages from the ernstp repository
+          Package: *
+          Pin: release o=LP-PPA-ernstp-mesarc
+          Pin-Priority: 1
+
+          # Allow upgrading only corectrl from LP-PPA-ernstp-mesarc
+          Package: corectrl
+          Pin: release o=LP-PPA-ernstp-mesarc
+          Pin-Priority: 500
+        dest: /etc/apt/preferences.d/corectrl
+        mode: '0644'
+      tags:
+        - corectrl_preferences
+
+    - name: Install corectrl | 2) Add Mesarc PPA repository
       become: yes
       apt_repository:
         repo: ppa:ernstp/mesarc
         state: present
 
-    - name: Install corectrl | 2) apt install
+    - name: Install corectrl | 3) apt install
       apt:
         update_cache: yes
         name: corectrl
