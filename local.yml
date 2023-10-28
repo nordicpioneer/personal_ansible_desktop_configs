@@ -16,7 +16,7 @@
           - rsync
           - net-tools
           - smartmontools
-          - corectrl               # System control tool. Application wise system performance profiles
+          - corectrl               # System control tool. Application wise system performance profiles. 
           - timeshift              # Backup tool
           - flameshot              # Screenshot tool
           - evolution              # Evolution mail client
@@ -27,6 +27,17 @@
           - libimobiledevice6      # libimobiledevice6 ubuntu install
           - libimobiledevice-utils # libimobiledevice6 ubuntu install
         state: latest
+
+    - name: Install corectrl | 1) Add Mesarc PPA repository
+      become: yes
+      apt_repository:
+        repo: ppa:ernstp/mesarc
+        state: present
+
+    - name: Install corectrl | 2) apt install
+      apt:
+        update_cache: yes
+        name: corectrl
 
     - name: Install Jottacloud CLI | 1) Obtain repository key
       ansible.builtin.get_url:
