@@ -16,6 +16,7 @@
           - rsync
           - net-tools
           - smartmontools
+          - corectrl               # System control tool. Application wise system performance profiles
           - timeshift              # Backup tool
           - flameshot              # Screenshot tool
           - evolution              # Evolution mail client
@@ -65,6 +66,7 @@
           - perl
           - git
           - tig
+          - lazygit
           - blender
           - python3.10
           - python3.10-dev
