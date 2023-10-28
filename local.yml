@@ -73,6 +73,11 @@
         update_cache: yes
         name: jotta-cli
 
+    - name: Install Jottacloud CLI | 4) Run the run_jottad command as user <adrian> to activate jotta-cli for this user
+      command: run_jottad
+      become: yes
+      become_user: adrian
+
     - name: 1password deb package install | utility packages
       apt:
         deb: https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb
