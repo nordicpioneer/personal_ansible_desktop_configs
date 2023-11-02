@@ -16,6 +16,7 @@
           - rsync
           - net-tools
           - smartmontools
+          - gparted                # Disk partitioning tool.
           - corectrl               # System control tool. Application wise system performance profiles. 
           - timeshift              # Backup tool
           - flameshot              # Screenshot tool
