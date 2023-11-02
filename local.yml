@@ -22,6 +22,7 @@
           - flameshot              # Screenshot tool
           - evolution              # Evolution mail client
           - evolution-ews          # Evolution mail client plugin for ms-exchange mail protocol https://www.uio.no/tjenester/it/e-post-kalender/evolution/hjelp/oppsett/sette-opp-evolution-med-ews.html
+          - gnome-tweaks           # GUI tool for customizing gnome desktop environment
           - pandoc                 # Tool for conversion between manuscript-document formats
           - xclip                  # CLI-tool for clipboard reading and writing
           - usbmuxd                # libimobiledevice6 ubuntu install
