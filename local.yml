@@ -18,6 +18,7 @@
           - net-tools
           - smartmontools
           - gparted                # Disk partitioning tool.
+          - imagemagick            # Image manipulation tool
           - corectrl               # System control tool. Application wise system performance profiles. 
           - timeshift              # Backup tool
           - flameshot              # Screenshot tool
