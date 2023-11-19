@@ -188,6 +188,7 @@
       community.general.flatpak:
         method: system
         name:
+          - com.bitwarden.desktop
           - com.github.tchx84.Flatseal
           - md.obsidian.Obsidian
           - org.zotero.Zotero
