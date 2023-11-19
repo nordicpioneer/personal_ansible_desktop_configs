@@ -192,6 +192,7 @@
           - com.github.tchx84.Flatseal
           - md.obsidian.Obsidian
           - org.zotero.Zotero
+          - io.neovim.nvim
           - com.github.ahrm.sioyek
           - com.calibre_ebook.calibre
           - org.signal.Signal
