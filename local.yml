@@ -3,6 +3,9 @@
 - hosts: localhost
   become: true
   tasks:
+    - name: Download and Install Nix package manager
+      command: "curl -L https://nixos.org/nix/install | sh -s -- --daemon"
+
     - name: system setup | utility packages | install packages
       apt:
         update_cache: yes
@@ -16,6 +19,7 @@
           - nala # Apt frontend cli tool
           - rsync
           - net-tools
+          - nfs-common             # NFS client and server tools
           - smartmontools
           - gparted                # Disk partitioning tool.
           - imagemagick            # Image manipulation tool
