@@ -18,6 +18,7 @@
           - wget
           - nala # Apt frontend cli tool
           - rsync
+          - pigz                   # Compression tool with parallellization
           - net-tools
           - nfs-common             # NFS client and server tools
           - smartmontools
