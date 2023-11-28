@@ -19,6 +19,7 @@
           - nala # Apt frontend cli tool
           - rsync
           - pigz                   # Compression tool with parallellization
+          - p7zip                  # 7z compression cli tool
           - net-tools
           - nfs-common             # NFS client and server tools
           - smartmontools
