@@ -15,6 +15,7 @@
           - tmux
           - vim-nox
           - speedtest-cli
+          - cpupower-gui
           - wget
           - nala # Apt frontend cli tool
           - rsync
