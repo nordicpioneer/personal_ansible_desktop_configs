@@ -3,8 +3,8 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: Download and Install Nix package manager
-      command: "curl -L https://nixos.org/nix/install | sh -s -- --daemon"
+#    - name: Download and Install Nix package manager
+#      command: "curl -L https://nixos.org/nix/install | sh -s -- --daemon"
 
     - name: system setup | utility packages | install packages
       apt:
@@ -37,6 +37,17 @@
           - libimobiledevice6      # libimobiledevice6 ubuntu install
           - libimobiledevice-utils # libimobiledevice6 ubuntu install
         state: latest
+
+    - name: Add PPA for gnome-shell-extension-cpupower
+      ansible.builtin.apt_repository:
+        repo: 'ppa:fin1ger/cpupower'
+        state: present
+        update_cache: true
+
+    - name: Install gnome-shell-extension-cpupower
+      apt:
+        name: gnome-shell-extension-cpupower
+        state: present
 
     - name: Install corectrl | 1) Create the /etc/apt/preferences.d/corectrl file
       become: yes
@@ -110,7 +121,7 @@
           - perl
           - git
           - tig
-          - lazygit
+#          - lazygit # doesnt exist in regular apt, only in PPA
           - blender
           - python3.10
           - python3.10-dev
