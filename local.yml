@@ -16,6 +16,7 @@
           - vim-nox
           - speedtest-cli
           - cpupower-gui
+          - blueman                # Bluetooth manager for IO/API/and more.
           - wget
           - nala # Apt frontend cli tool
           - rsync
