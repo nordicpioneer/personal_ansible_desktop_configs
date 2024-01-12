@@ -227,6 +227,7 @@
           - com.belmoussaoui.Decoder # qr-code scanner and generation
           - com.mastermindzh.tidal-hifi
           - io.podman_desktop.PodmanDesktop
+          - org.jaspstats.JASP # JASP gui-statistics application
         state: present
 
     - name: Uninstall flatpaks
