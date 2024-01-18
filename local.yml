@@ -20,6 +20,7 @@
           - wget
           - nala # Apt frontend cli tool
           - rsync
+          - rclone                 # cloud sync tool
           - pigz                   # Compression tool with parallellization
           - p7zip-full             # p7zip includes 7z compression cli tool
           - net-tools
@@ -38,6 +39,7 @@
           - usbmuxd                # libimobiledevice6 ubuntu install
           - libimobiledevice6      # libimobiledevice6 ubuntu install
           - libimobiledevice-utils # libimobiledevice6 ubuntu install
+          - pspp                   # GNU SPSS alternative
         state: latest
 
     - name: Add PPA for gnome-shell-extension-cpupower
