@@ -143,20 +143,6 @@
           - connectome-workbench
         state: present
 
-    - name: Add repo for TLP ubuntu
-      ansible.builtin.apt_repository:
-        repo: 'ppa:linrunner/tlp'
-        state: present
-        update_cache: true
-
-    - name: Install TLP power/battery manager and radio device manager
-      apt:
-        name:
-          - tlp
-          - tlp-rdw
-        state: present
-        update_cache: true
-
     - name: Install R | Set host facts for R
       ansible.builtin.set_fact:
         R_VERSION: '4.2.2'
@@ -230,30 +216,15 @@
           - org.jaspstats.JASP # JASP gui-statistics application
         state: present
 
-    - name: Uninstall flatpaks
-      community.general.flatpak:
-        method: system
-        name:
-          - org.mozilla.Thunderbird
-          - com.sindresorhus.Caprine
-
 #  roles:
 #     - { role: uelei.python-setup-pyenv-pipx-poetry }
 #     - { role: viasite-ansible.zsh }
 #     - { role: geerlingguy.docker }
-#
-#  tasks:
-#     - name: pipx install cookiecutter | Data science project templates
-#       apt.community.general.pipx:
-#         name: cookiecutter
 
 # gnome-extensions
-  # pomodoro/cronomix
   # User themes custom gnome themes and accent colors and color themes
   # vitals -> system resource monitor, customizabel info in menu bar
   # gsconnect -> connect to smartphone
-  # openweather
-  # unblank -> in locked screen mode sometimes you have to enter password blindly
   # fly-pie -> custom bubble wheel menu for commands apps and folder navigation
   # forge -> window tiling system, with support for small floating windows.
   # gradience (standalone app via flathub) -> apply color palettes to windows and buttons
@@ -265,11 +236,3 @@
   # login-manager-settings -> customize login window
   # pano -> visual clipboard manager. visual customization for 
          # varying content in clipboard. require some libraries.
-  # webfeed -> rss into menubar
-  # circular widgets
-  # sound input & output device chooser
-
-# tools for gnome desktop configuration
-   # gnome community.general.dconf module for ansible is usefull for setting up
-      # gnome desktop environment with ansible
-   # gnome-extensions-cli -> a pipx python cli-tool to manage gnome shell extensions
