@@ -17,7 +17,9 @@
           - speedtest-cli
           - cpupower-gui
           - blueman                # Bluetooth manager for IO/API/and more.
+          - ocrmypdf               # OCRPDF conversion cli-tool built upon Tesseract OCR engine
           - wget
+          - fzf                    # fuzzy search finding
           - nala # Apt frontend cli tool
           - rsync
           - rclone                 # cloud sync tool
