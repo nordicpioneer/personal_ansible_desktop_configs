@@ -10,19 +10,21 @@
       apt:
         update_cache: yes
         name:
+          - nala                   # apt frontend cli tool
           - htop
           - btop
           - tmux
           - vim-nox
+          - bat                    # cat clone with wings
+          - fzf                    # fuzzy search finding. Combine with other tools "--preview 'bat'"
+          - xclip                  # cli-tool for clipboard reading and writing
           - speedtest-cli
           - cpupower-gui
           - blueman                # Bluetooth manager for IO/API/and more.
           - ocrmypdf               # OCRPDF conversion cli-tool built upon Tesseract OCR engine
           - wget
-          - fzf                    # fuzzy search finding
-          - nala # Apt frontend cli tool
           - rsync
-          - rclone                 # cloud sync tool
+          - rclone                 # cloud syncing with a host of cloud-apis
           - pigz                   # Compression tool with parallellization
           - p7zip-full             # p7zip includes 7z compression cli tool
           - net-tools
@@ -37,11 +39,11 @@
           - evolution-ews          # Evolution mail client plugin for ms-exchange mail protocol https://www.uio.no/tjenester/it/e-post-kalender/evolution/hjelp/oppsett/sette-opp-evolution-med-ews.html
           - gnome-tweaks           # GUI tool for customizing gnome desktop environment
           - pandoc                 # Tool for conversion between manuscript-document formats
-          - xclip                  # CLI-tool for clipboard reading and writing
           - usbmuxd                # libimobiledevice6 ubuntu install
           - libimobiledevice6      # libimobiledevice6 ubuntu install
           - libimobiledevice-utils # libimobiledevice6 ubuntu install
           - pspp                   # GNU SPSS alternative
+          - spice-client-gtk       # SPICE VNC client
         state: latest
 
     - name: Add PPA for gnome-shell-extension-cpupower
@@ -127,7 +129,6 @@
           - perl
           - git
           - tig
-          - blender
           - python3.10
           - python3.10-dev
           - python3.10-venv
@@ -224,19 +225,3 @@
 #     - { role: uelei.python-setup-pyenv-pipx-poetry }
 #     - { role: viasite-ansible.zsh }
 #     - { role: geerlingguy.docker }
-
-# gnome-extensions
-  # User themes custom gnome themes and accent colors and color themes
-  # vitals -> system resource monitor, customizabel info in menu bar
-  # gsconnect -> connect to smartphone
-  # fly-pie -> custom bubble wheel menu for commands apps and folder navigation
-  # forge -> window tiling system, with support for small floating windows.
-  # gradience (standalone app via flathub) -> apply color palettes to windows and buttons
-  # just-perfection -> customize panels, buttons, icons, items in clock menu.
-         # and change behavior, animations
-  # advanced-alt-tab-switcher -> customize switching menu between windows, with own
-         # keyboard hotkeys
-  # chce -> custom corner actions, with enourmes alternatives in the extensions settings
-  # login-manager-settings -> customize login window
-  # pano -> visual clipboard manager. visual customization for 
-         # varying content in clipboard. require some libraries.
