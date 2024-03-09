@@ -201,11 +201,12 @@
           - com.github.tchx84.Flatseal
           - md.obsidian.Obsidian
           - org.zotero.Zotero
+          - com.github.jeromerobert.pdfarranger
           - io.neovim.nvim
+          - net.ankiweb.Anki
           - com.github.ahrm.sioyek
           - com.calibre_ebook.calibre
           - org.signal.Signal
-          - network.loki.Session
           - com.slack.Slack
           - com.discordapp.Discord
           - com.github.dynobo.normcap
