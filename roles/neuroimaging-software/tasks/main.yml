@@ -1,0 +1,7 @@
+- name: neuroimaging packages | install apt packages
+  apt:
+    update_cache: yes
+    name:
+      - dcm2niix
+      - connectome-workbench
+    state: present

@@ -1,0 +1,20 @@
+- name: Install Jottacloud CLI | 1) Obtain repository key
+  ansible.builtin.get_url:
+    url: https://repo.jotta.us/public.asc
+    dest: /usr/share/keyrings/jotta.gpg
+
+- name: Install Jottacloud CLI | 2) Save repo information to apt sources
+  ansible.builtin.apt_repository:
+    repo: 'deb [signed-by=/usr/share/keyrings/jotta.gpg] https://repo.jotta.us/debian debian main'
+    state: present
+    update_cache: true
+
+- name: Install Jottacloud CLI | 3) Update cache and install from repo
+  apt:
+    update_cache: yes
+    name: jotta-cli
+
+- name: Install Jottacloud CLI | 4) Run the run_jottad command as current user to activate jotta-cli for this user
+  command: run_jottad
+  become: yes
+  become_user: "{{ ansible_env.USER }}"

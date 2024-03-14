@@ -1,0 +1,25 @@
+---
+- name: apt gui software | install packages
+  apt:
+    update_cache: yes
+    name:
+      - cpupower-gui           # GUI tool for editing max cpu freq
+      - blueman                # Bluetooth manager for IO/API/and more.
+      - gparted                # Disk partitioning tool.
+      - imagemagick            # Image manipulation tool
+      - corectrl               # System control tool. Application wise system performance profiles. 
+      - timeshift              # Backup tool
+      - flameshot              # Screenshot tool
+      - evolution              # Evolution mail client
+      - evolution-ews          # Evolution mail client plugin for ms-exchange mail protocol https://www.uio.no/tjenester/it/e-post-kalender/evolution/hjelp/oppsett/sette-opp-evolution-med-ews.html
+      - gnome-tweaks           # GUI tool for customizing gnome desktop environment
+      - pandoc                 # Tool for conversion between manuscript-document formats
+      - usbmuxd                # libimobiledevice6 ubuntu install
+      - libimobiledevice6      # libimobiledevice6 ubuntu install
+      - libimobiledevice-utils # libimobiledevice6 ubuntu install
+      - pspp                   # GNU SPSS alternative
+      - spice-client-gtk       # SPICE VNC client
+      - vlc
+      - gnucash
+      #- anki # apt is not recently updated anki package
+    state: latest

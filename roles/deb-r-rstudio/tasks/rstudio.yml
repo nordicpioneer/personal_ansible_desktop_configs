@@ -1,0 +1,10 @@
+---
+- name: Install Rstudio | Set host facts for Rstudio
+  ansible.builtin.set_fact:
+    RSTUDIO_VERSION: '2023.12.1-402'
+    #RSTUDIO_DOWNLOAD_URL: ''
+
+- name: Install RStudio | Install deb package
+  apt:
+    deb: 'https://download1.rstudio.org/electron/{{ UBUNTU_VERSION_NAME }}/{{ CPU_TYPE }}/rstudio-{{ RSTUDIO_VERSION }}-{{ CPU_TYPE }}.deb'
+    state: present

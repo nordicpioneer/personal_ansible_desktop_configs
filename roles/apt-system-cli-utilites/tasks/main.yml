@@ -1,0 +1,29 @@
+- name: system setup | utility packages | install packages
+  apt:
+    update_cache: yes
+    name:
+      - nala                   # apt frontend cli tool
+      - htop
+      - btop
+      - rsync
+      - rclone                 # cloud syncing with a host of cloud-apis
+      - tree
+      - bat                    # cat clone with wings
+      - fzf                    # fuzzy search finding. Combine with other tools "--preview 'bat'"
+      - xclip                  # cli-tool for clipboard reading and writing
+      - tmux
+      - vim-nox
+      - speedtest-cli
+      - ocrmypdf               # OCRPDF conversion cli-tool built upon Tesseract OCR engine
+      - wget
+      - pigz                   # Compression tool with parallellization
+      - p7zip-full             # p7zip includes 7z compression cli tool
+      - net-tools
+      - nfs-common             # NFS client and server tools
+      - smartmontools
+      - pandoc                 # Tool for conversion between manuscript-document formats
+      - usbmuxd                # libimobiledevice6 ubuntu install
+      - libimobiledevice6      # libimobiledevice6 ubuntu install
+      - libimobiledevice-utils # libimobiledevice6 ubuntu install
+      - spice-client-gtk       # SPICE VNC client
+    state: latest

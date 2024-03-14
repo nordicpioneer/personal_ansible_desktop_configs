@@ -1,0 +1,22 @@
+---
+- name: Install R | Set host facts for R
+  ansible.builtin.set_fact:
+    R_VERSION: '4.2.2'
+    CPU_TYPE: 'amd64'
+    UBUNTU_VERSION_NAME: 'jammy'
+    UBUNTU_VERSION_NUMBER: '2204'
+
+- name: Install R | Install deb package for ubuntu 2204 amd64
+  apt:
+    deb: 'https://cdn.rstudio.com/r/ubuntu-{{ UBUNTU_VERSION_NUMBER  }}/pkgs/r-{{ R_VERSION }}_1_{{ CPU_TYPE }}.deb'
+    state: present
+
+- name: Install R | Create symlink for R
+  command: 'ln -s /opt/R/{{ R_VERSION }}/bin/R /usr/local/bin/R'
+  args:
+    creates: '/usr/local/bin/R'
+
+- name: Install R | Create symlink for Rscript
+  command: 'ln -s /opt/R/{{ R_VERSION }}/bin/Rscript /usr/local/bin/Rscript'
+  args:
+    creates: '/usr/local/bin/Rscript'

@@ -1,0 +1,42 @@
+---
+- name: Install collection community.general
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: community.general
+
+- name: Add flathub repo
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: 'https://dl.flathub.org/repo/flathub.flatpakrepo'
+    method: system
+    enabled: true
+
+- name: Install flatpaks
+  community.general.flatpak:
+    method: system
+    name:
+      - com.bitwarden.desktop
+      - com.github.tchx84.Flatseal # gui settings manager for flatpak software
+      - md.obsidian.Obsidian
+      - org.zotero.Zotero
+      - com.github.jeromerobert.pdfarranger
+      - io.neovim.nvim
+      - net.ankiweb.Anki
+      - com.github.ahrm.sioyek
+      - com.calibre_ebook.calibre
+      - org.signal.Signal
+      - com.slack.Slack
+      - com.discordapp.Discord
+      - com.github.dynobo.normcap
+      - com.vscodium.codium
+      - com.anydesk.Anydesk
+      - com.github.IsmaelMartinez.teams_for_linux
+      - org.gnome.Extensions
+      - com.mattjakeman.ExtensionManager
+      - app.drey.Dialect # translation app for GNOME
+      - com.belmoussaoui.Decoder # qr-code scanner and generation
+      - com.mastermindzh.tidal-hifi
+      - io.podman_desktop.PodmanDesktop
+      - org.jaspstats.JASP # JASP gui-statistics application
+    state: present
