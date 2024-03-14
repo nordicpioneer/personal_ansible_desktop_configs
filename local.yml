@@ -15,6 +15,7 @@
           - btop
           - tmux
           - vim-nox
+          - tree
           - bat                    # cat clone with wings
           - fzf                    # fuzzy search finding. Combine with other tools "--preview 'bat'"
           - xclip                  # cli-tool for clipboard reading and writing
