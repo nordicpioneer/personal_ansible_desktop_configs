@@ -1,0 +1,3 @@
+[submodule "roles/ansible-role-vscodium"]
+	path = roles/ansible-role-vscodium
+	url = https://github.com/nordicpioneer/ansible-role-vscodium
